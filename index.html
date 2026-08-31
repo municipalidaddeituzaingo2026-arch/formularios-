@@ -3,362 +3,354 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ARTI - Formularios</title>
+
+<title>ARTI - Formularios Municipales</title>
+
 <style>
-  :root{
-    --azul-profundo:#173964;
-    --azul-medio:#2c5c9e;
-    --azul-claro:#e8eff8;
-    --papel:#fbfaf7;
-    --tinta:#1c2733;
-    --tinta-suave:#5b6b7d;
-    --oro:#b3893e;
-    --linea:#d7e0ec;
-  }
+* {
+    box-sizing: border-box;
+}
 
-  *{box-sizing:border-box;margin:0;padding:0}
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f7f7f5;
+    color: #173964;
+}
 
-  body{
-    font-family:'Georgia', 'Times New Roman', serif;
-    background:var(--papel);
-    color:var(--tinta);
-    -webkit-font-smoothing:antialiased;
-  }
+/* ENCABEZADO */
+header {
+    background: linear-gradient(135deg, #285994, #2f639f);
+    color: white;
+    text-align: center;
+    padding: 35px 20px 75px;
+}
 
-  header{
-    background:linear-gradient(180deg, var(--azul-profundo) 0%, var(--azul-medio) 100%);
-    color:#fff;
-    padding:64px 24px 88px;
-    text-align:center;
-    position:relative;
-  }
+.logo {
+    width: 95px;
+    height: 95px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    border-radius: 50%;
+}
 
-  .sello{
-    width:76px;
-    height:76px;
-    margin:0 auto 22px;
-    border-radius:50%;
-    border:2px solid rgba(255,255,255,.55);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:relative;
-  }
+header h1 {
+    margin: 5px 0 10px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 40px;
+}
 
-  .sello::before{
-    content:"";
-    position:absolute;
-    inset:8px;
-    border:1px solid rgba(255,255,255,.35);
-    border-radius:50%;
-  }
+header p {
+    margin: 0 auto;
+    max-width: 600px;
+    font-size: 16px;
+    line-height: 1.6;
+}
 
-  .sello svg{
-    width:32px;
-    height:32px;
-    fill:none;
-    stroke:#fff;
-    stroke-width:1.4;
-  }
+/* CONTENEDOR */
+.contenedor {
+    max-width: 850px;
+    margin: -40px auto 60px;
+    padding: 0 20px;
+}
 
-  .sello img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    border-radius:50%;
-  }
+/* TARJETAS */
+.formulario {
+    background: white;
+    border: 1px solid #d4dfec;
+    border-radius: 4px;
+    margin-bottom: 18px;
+    padding: 25px 28px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 0 2px 7px rgba(0,0,0,0.08);
+    transition: all 0.2s ease;
+}
 
-  .eyebrow{
-    font-family:'Helvetica Neue', Arial, sans-serif;
-    font-size:11px;
-    letter-spacing:3px;
-    text-transform:uppercase;
-    color:rgba(255,255,255,.72);
-    margin-bottom:14px;
-  }
+.formulario:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(0,0,0,0.12);
+}
 
-  h1{
-    font-size:clamp(28px, 4vw, 40px);
-    font-weight:400;
-    letter-spacing:.3px;
-    line-height:1.25;
-  }
+.numero {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    border: 1px solid #c38b32;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #b07822;
+    font-family: Georgia, serif;
+    font-size: 14px;
+}
 
-  header p{
-    font-family:'Helvetica Neue', Arial, sans-serif;
-    max-width:480px;
-    margin:16px auto 0;
-    color:rgba(255,255,255,.82);
-    font-size:15px;
-    line-height:1.6;
-  }
+.info {
+    flex: 1;
+}
 
-  .volver{
-    display:inline-block;
-    font-family:'Helvetica Neue', Arial, sans-serif;
-    font-size:12.5px;
-    color:rgba(255,255,255,.75);
-    text-decoration:none;
-    margin-bottom:22px;
-  }
-  .volver:hover{ color:#fff; text-decoration:underline; }
+.info h2 {
+    margin: 0 0 5px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: normal;
+    font-size: 19px;
+    color: #173964;
+}
 
-  main{
-    max-width:880px;
-    margin:-48px auto 0;
-    padding:0 24px 80px;
-    position:relative;
-  }
+.info p {
+    margin: 0;
+    color: #52677d;
+    font-size: 14px;
+    line-height: 1.5;
+}
 
-  .lista{
-    display:grid;
-    gap:18px;
-  }
+/* BOTÓN */
+.boton {
+    display: inline-block;
+    text-decoration: none;
+    border: 1px solid #1e5eb0;
+    color: #174f94;
+    background: white;
+    padding: 10px 25px;
+    font-size: 14px;
+    min-width: 79px;
+    text-align: center;
+    transition: all 0.2s ease;
+}
 
-  .formulario-item{
-    background:#fff;
-    border:1px solid var(--linea);
-    border-radius:4px;
-    padding:26px 28px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-    box-shadow:0 1px 3px rgba(23,57,100,.06);
-    transition:box-shadow .2s ease, transform .2s ease;
-  }
+.boton:hover {
+    background: #1e5eb0;
+    color: white;
+}
 
-  .formulario-item:hover{
-    box-shadow:0 8px 24px rgba(23,57,100,.10);
-    transform:translateY(-1px);
-  }
+/* PIE */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #68798a;
+    font-size: 13px;
+}
 
-  .formulario-info{
-    display:flex;
-    align-items:flex-start;
-    gap:16px;
-  }
+.linea {
+    width: 45px;
+    height: 1px;
+    background: #d4dfec;
+    margin: 0 auto 15px;
+}
 
-  .numero{
-    font-family:'Helvetica Neue', Arial, sans-serif;
-    font-size:11px;
-    letter-spacing:1px;
-    color:var(--oro);
-    border:1px solid var(--oro);
-    border-radius:50%;
-    width:30px;
-    height:30px;
-    min-width:30px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin-top:2px;
-  }
+/* CELULAR */
+@media (max-width: 600px) {
 
-  .formulario-texto h2{
-    font-size:18px;
-    font-weight:400;
-    color:var(--azul-profundo);
-    margin-bottom:4px;
-  }
-
-  .formulario-texto p{
-    font-family:'Helvetica Neue', Arial, sans-serif;
-    font-size:13.5px;
-    color:var(--tinta-suave);
-    line-height:1.5;
-  }
-
-  .abrir{
-    font-family:'Helvetica Neue', Arial, sans-serif;
-    font-size:13px;
-    font-weight:600;
-    letter-spacing:.3px;
-    color:var(--azul-profundo);
-    text-decoration:none;
-    border:1px solid var(--azul-medio);
-    padding:10px 22px;
-    border-radius:2px;
-    white-space:nowrap;
-    transition:background .2s ease, color .2s ease;
-  }
-
-  .abrir:hover{
-    background:var(--azul-medio);
-    color:#fff;
-  }
-
-  .requisitos-general{
-    display:flex;
-    justify-content:center;
-    margin-top:34px;
-  }
-
-  .ver-requisitos{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    font-family:'Helvetica Neue', Arial, sans-serif;
-    font-size:14px;
-    font-weight:600;
-    letter-spacing:.3px;
-    color:var(--azul-profundo);
-    text-decoration:none;
-    border-bottom:1px solid var(--oro);
-    padding-bottom:2px;
-  }
-
-  .ver-requisitos:hover{
-    color:var(--oro);
-  }
-
-  .abrir:focus-visible, .ver-requisitos:focus-visible, .formulario-item:focus-within{
-    outline:2px solid var(--oro);
-    outline-offset:2px;
-  }
-
-  footer{
-    text-align:center;
-    padding:32px 24px 48px;
-    font-family:'Helvetica Neue', Arial, sans-serif;
-    font-size:12px;
-    color:var(--tinta-suave);
-  }
-
-  footer .linea-pie{
-    width:40px;
-    height:1px;
-    background:var(--linea);
-    margin:0 auto 16px;
-  }
-
-  @media (max-width:560px){
-    header{padding:48px 20px 72px}
-    .formulario-item{
-      flex-direction:column;
-      align-items:flex-start;
+    header {
+        padding: 30px 15px 65px;
     }
-    .abrir{width:100%;text-align:center}
-  }
 
-  @media (prefers-reduced-motion: reduce){
-    .formulario-item{transition:none}
-  }
+    header h1 {
+        font-size: 32px;
+    }
+
+    .formulario {
+        flex-wrap: wrap;
+        padding: 20px;
+    }
+
+    .boton {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
 </style>
 </head>
+
 <body>
 
 <header>
-  <a class="volver" href="../index.html">← Volver al portal</a>
-  <div class="sello" aria-hidden="true">
-    <img src="../assets/logo-arti.jpeg" alt="Logo ARTI">
-  </div>
-  <div class="eyebrow">Municipalidad de Ituzaingó</div>
-  <h1>ARTI &ndash; Formularios</h1>
-  <p>Accedé, completá y descargá tus formularios en formato PDF de manera simple y directa.</p>
+
+    <!-- LOGO -->
+    <img src="assets/logo-arti.jpeg"
+         alt="Logo ARTI"
+         class="logo">
+
+    <h1>ARTI – Formularios</h1>
+
+    <p>
+        Accedé, completá y descargá tus formularios en formato PDF de
+        manera simple y directa.
+    </p>
+
 </header>
 
-<main>
-  <div class="lista">
 
-    <div class="formulario-item">
-      <div class="formulario-info">
-        <span class="numero" aria-hidden="true">1</span>
-        <div class="formulario-texto">
-          <h2>Autorización</h2>
-          <p>Formulario de autorización municipal, listo para completar y exportar.</p>
+<main class="contenedor">
+
+    <!-- 1 AUTORIZACIÓN -->
+    <div class="formulario">
+
+        <div class="numero">1</div>
+
+        <div class="info">
+            <h2>Autorización</h2>
+            <p>
+                Formulario de autorización municipal, listo para completar y exportar.
+            </p>
         </div>
-      </div>
-      <a class="abrir" href="autorizacion_arti_con_logo_y_pdf.html">Abrir</a>
+
+        <a class="boton" href="autorizacion/index.html">
+            Abrir
+        </a>
+
     </div>
 
-    <div class="formulario-item">
-      <div class="formulario-info">
-        <span class="numero" aria-hidden="true">2</span>
-        <div class="formulario-texto">
-          <h2>Baja Comercial</h2>
-          <p>Solicitud de baja de actividad comercial ante el municipio.</p>
+
+    <!-- 2 BAJA COMERCIAL -->
+    <div class="formulario">
+
+        <div class="numero">2</div>
+
+        <div class="info">
+            <h2>Baja Comercial</h2>
+            <p>
+                Solicitud de baja de actividad comercial ante el municipio.
+            </p>
         </div>
-      </div>
-      <a class="abrir" href="index_baja_comercial_marco_sin_garabatos.html">Abrir</a>
+
+        <a class="boton" href="baja-comercial/index.html">
+            Abrir
+        </a>
+
     </div>
 
-    <div class="formulario-item">
-      <div class="formulario-info">
-        <span class="numero" aria-hidden="true">3</span>
-        <div class="formulario-texto">
-          <h2>Constancia de No Inscripción Comercial</h2>
-          <p>Certificado oficial con marco ornamental, listo para firmar.</p>
+
+    <!-- 3 CONSTANCIA DE NO INSCRIPCIÓN -->
+    <div class="formulario">
+
+        <div class="numero">3</div>
+
+        <div class="info">
+            <h2>Constancia de No Inscripción Comercial</h2>
+            <p>
+                Certificado oficial de constancia de no inscripción comercial.
+            </p>
         </div>
-      </div>
-      <a class="abrir" href="index_certificado_ornamental.html">Abrir</a>
+
+        <a class="boton"
+           href="Formulario.constancia.no.inscripcion-index/index.html">
+            Abrir
+        </a>
+
     </div>
 
-    <div class="formulario-item">
-      <div class="formulario-info">
-        <span class="numero" aria-hidden="true">4</span>
-        <div class="formulario-texto">
-          <h2>Certificado</h2>
-          <p>Formulario de solicitud de certificado. Pendiente de publicar.</p>
+
+    <!-- 4 HABILITACIÓN COMERCIAL -->
+    <div class="formulario">
+
+        <div class="numero">4</div>
+
+        <div class="info">
+            <h2>Habilitación Comercial</h2>
+            <p>
+                Formulario para iniciar o completar la habilitación comercial.
+            </p>
         </div>
-      </div>
-      <a class="abrir" href="certificado.html">Abrir</a>
+
+        <a class="boton"
+           href="Nota%20habilitación%20comercial/index.html">
+            Abrir
+        </a>
+
     </div>
 
-    <div class="formulario-item">
-      <div class="formulario-info">
-        <span class="numero" aria-hidden="true">5</span>
-        <div class="formulario-texto">
-          <h2>Habilitación de Vehículos</h2>
-          <p>Formulario de habilitación de vehículos. Pendiente de publicar.</p>
+
+    <!-- 5 HABILITACIÓN CONDICIONAL -->
+    <div class="formulario">
+
+        <div class="numero">5</div>
+
+        <div class="info">
+            <h2>Habilitación Condicional</h2>
+            <p>
+                Formulario de habilitación condicional.
+            </p>
         </div>
-      </div>
-      <a class="abrir" href="habilitacion-vehiculos.html">Abrir</a>
+
+        <a class="boton"
+           href="habilitacion-condicional/index.html">
+            Abrir
+        </a>
+
     </div>
 
-    <div class="formulario-item">
-      <div class="formulario-info">
-        <span class="numero" aria-hidden="true">6</span>
-        <div class="formulario-texto">
-          <h2>Memo</h2>
-          <p>Formulario de memo interno. Pendiente de publicar.</p>
+
+    <!-- 6 HABILITACIÓN DE VEHÍCULO -->
+    <div class="formulario">
+
+        <div class="numero">6</div>
+
+        <div class="info">
+            <h2>Habilitación de Vehículo</h2>
+            <p>
+                Solicitud de habilitación de vehículo para fines comerciales.
+            </p>
         </div>
-      </div>
-      <a class="abrir" href="memo.html">Abrir</a>
+
+        <a class="boton"
+           href="habilitacion-vehiculo/index.html">
+            Abrir
+        </a>
+
     </div>
 
-    <div class="formulario-item">
-      <div class="formulario-info">
-        <span class="numero" aria-hidden="true">7</span>
-        <div class="formulario-texto">
-          <h2>Habilitación Comercial</h2>
-          <p>Formulario de habilitación comercial. Pendiente de publicar.</p>
+
+    <!-- 7 MEMORÁNDUM -->
+    <div class="formulario">
+
+        <div class="numero">7</div>
+
+        <div class="info">
+            <h2>Memorándum</h2>
+            <p>
+                Formulario de Memorándum Interno.
+            </p>
         </div>
-      </div>
-      <a class="abrir" href="habilitacion-comercial.html">Abrir</a>
+
+        <a class="boton"
+           href="memo/index.html">
+            Abrir
+        </a>
+
     </div>
 
-    <div class="formulario-item">
-      <div class="formulario-info">
-        <span class="numero" aria-hidden="true">8</span>
-        <div class="formulario-texto">
-          <h2>Habilitación Condicional</h2>
-          <p>Formulario de habilitación condicional. Pendiente de publicar.</p>
+
+    <!-- 8 REQUISITOS -->
+    <div class="formulario">
+
+        <div class="numero">8</div>
+
+        <div class="info">
+            <h2>Requisitos</h2>
+            <p>
+                Consultá los requisitos correspondientes a los distintos trámites municipales.
+            </p>
         </div>
-      </div>
-      <a class="abrir" href="habilitacion-condicional.html">Abrir</a>
+
+        <a class="boton"
+           href="requisitos/index.html">
+            Abrir
+        </a>
+
     </div>
 
-  </div>
-
-  <div class="requisitos-general">
-    <a class="ver-requisitos" href="../requisitos/index.html">📄 ARTI &ndash; Requisitos</a>
-  </div>
 </main>
 
+
 <footer>
-  <div class="linea-pie"></div>
-  Portal de Formularios Municipales
+
+    <div class="linea"></div>
+
+    Municipalidad de Ituzaingó - Corrientes
+
 </footer>
 
 </body>
