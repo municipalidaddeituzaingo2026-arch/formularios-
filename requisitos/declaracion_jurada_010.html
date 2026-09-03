@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,220 +12,144 @@
 <style>
 
 *{
-    box-sizing:border-box;
+  box-sizing:border-box;
 }
 
 html,body{
-    margin:0;
-    padding:0;
-    background:#e9ecef;
-    color:#111;
-    font-family:Arial, Helvetica, sans-serif;
+  margin:0;
+  padding:0;
+  background:#e9ecef;
+  color:#111;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:12px;
 }
 
 /* =========================
-   BARRA SUPERIOR
+   BOTONES
 ========================= */
 
 .barra-acciones{
-    position:sticky;
-    top:0;
-    z-index:100;
-    background:#073b73;
-    padding:7px;
-    text-align:center;
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:#173964;
+  padding:12px;
+  text-align:center;
 }
 
 .boton{
-    border:0;
-    border-radius:5px;
-    padding:10px 24px;
-    margin:0 6px;
-    font-size:15px;
-    font-weight:bold;
-    cursor:pointer;
+  border:0;
+  border-radius:6px;
+  padding:10px 18px;
+  margin:0 5px;
+  font-weight:bold;
+  cursor:pointer;
 }
 
 .boton-pdf{
-    background:#e5a900;
-    color:white;
+  background:#b3893e;
+  color:white;
 }
 
 .boton-limpiar{
-    background:white;
-    color:#073b73;
-}
-
-.boton:hover{
-    opacity:.9;
+  background:white;
+  color:#173964;
 }
 
 /* =========================
-   CONTENEDOR GENERAL
+   DOCUMENTO
 ========================= */
 
-#formularioPDF{
-    width:210mm;
-    margin:auto;
+.documento{
+  width:210mm;
+  margin:15px auto;
 }
 
-/* =========================
-   CADA PAGINA A4
-========================= */
+/* MARCO GRUESO COMO LA IMAGEN */
 
 .pagina{
-    width:210mm;
-    min-height:297mm;
-    background:white;
-    margin:10mm auto;
-    padding:8mm 7mm;
-    position:relative;
+  width:210mm;
+  height:297mm;
+  background:white;
+  margin:0 auto 15px;
+  padding:9mm 8mm;
 
-    border:2.5px solid #111;
+  border:2px solid #111;
 
-    box-shadow:
-        0 0 0 1px white,
-        0 0 0 4px #111;
-
-    page-break-after:always;
-}
-
-.pagina:last-child{
-    page-break-after:auto;
-}
-
-/* Marco interior */
-
-.pagina::before{
-    content:"";
-    position:absolute;
-    top:4mm;
-    left:4mm;
-    right:4mm;
-    bottom:4mm;
-    border:1.5px solid #111;
-    pointer-events:none;
+  position:relative;
+  overflow:hidden;
 }
 
 /* =========================
    ENCABEZADO
 ========================= */
 
-.encabezado{
-    height:35mm;
-    border:2px solid #111;
-    display:grid;
-    grid-template-columns:55% 45%;
-    position:relative;
-    z-index:2;
+.cabecera{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+
+  border:2px solid #111;
+
+  min-height:30mm;
 }
 
-.encabezado-izq{
-    border-right:2px solid #111;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:4mm;
-    gap:8mm;
+.cabecera-izq,
+.cabecera-der{
+  padding:4mm;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 }
 
-.logo{
-    width:25mm;
-    height:25mm;
-    object-fit:contain;
+.cabecera-der{
+  border-left:2px solid #111;
 }
 
-.datos-municipales{
-    text-align:center;
+.cabecera strong{
+  font-size:13px;
+  line-height:1.25;
 }
 
-.datos-municipales h1{
-    margin:0;
-    font-size:20px;
-    font-weight:bold;
-}
-
-.datos-municipales h2{
-    margin:5px 0;
-    font-size:16px;
-}
-
-.datos-municipales h3{
-    margin:8px 0 0;
-    font-size:16px;
-}
-
-.encabezado-derecho{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:5mm;
-    color:#092d61;
-    font-size:17px;
-    font-weight:bold;
-    line-height:1.4;
+.cabecera .provincia{
+  font-size:12px;
+  margin:2px 0;
 }
 
 /* =========================
-   DATOS EXPEDIENTE
+   EXPEDIENTE
 ========================= */
 
 .expediente{
-    height:13mm;
-    border-left:2px solid #111;
-    border-right:2px solid #111;
-    border-bottom:2px solid #111;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:15mm;
-
-    font-size:13px;
-    font-weight:bold;
-}
-
-.expediente input{
-    width:35mm;
-    height:7mm;
+  border:2px solid #111;
+  border-top:0;
+  padding:3mm;
+  text-align:center;
+  font-size:11px;
 }
 
 /* =========================
    RUBROS
 ========================= */
 
-.rubros{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:3mm;
-    margin-top:3mm;
-}
-
-.columna{
-    display:flex;
-    flex-direction:column;
-    gap:3mm;
-}
-
 .rubro{
-    border:1.8px solid #111;
-    position:relative;
-    z-index:2;
+  border:2px solid #111;
+  border-top:0;
 }
 
 .rubro-titulo{
-    background:#dfe9f5;
-    border-bottom:1.8px solid #111;
-    color:#092d61;
-    font-size:13px;
-    font-weight:bold;
-    padding:5px 6px;
+  font-weight:bold;
+  font-size:14px;
+  padding:3mm 4mm;
+
+  border-bottom:2px solid #111;
+
+  color:#173964;
+  background:#e8eff8;
 }
 
 .rubro-contenido{
-    padding:5px;
+  padding:3mm 5mm;
 }
 
 /* =========================
@@ -232,1279 +157,1230 @@ html,body{
 ========================= */
 
 .fila{
-    display:flex;
-    align-items:center;
-    gap:5px;
-    margin-bottom:5px;
-    font-size:10px;
-}
-
-.fila:last-child{
-    margin-bottom:0;
+  display:flex;
+  align-items:flex-end;
+  min-height:9mm;
+  gap:3mm;
 }
 
 .etiqueta{
-    white-space:nowrap;
-}
-
-input,
-select,
-textarea{
-    border:1px solid #bbb;
-    border-radius:3px;
-    background:white;
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:10px;
-    padding:2px 4px;
-}
-
-input{
-    height:6.5mm;
-}
-
-.campo{
-    flex:1;
-    min-width:0;
-}
-
-textarea{
-    width:100%;
-    min-height:20mm;
-    resize:vertical;
-}
-
-/* =========================
-   CAMPOS GRANDES
-========================= */
-
-.lineas{
-    width:100%;
+  white-space:nowrap;
 }
 
 .linea{
-    border-bottom:1px dotted #111;
-    height:8mm;
-    width:100%;
+  flex:1;
+  min-width:20mm;
+
+  border:0;
+  border-bottom:2px dotted #111;
+
+  outline:none;
+
+  height:6mm;
+
+  font:inherit;
+  background:transparent;
+
+  padding:0 2mm;
 }
 
-.texto-linea{
-    display:flex;
-    align-items:center;
-    gap:4px;
-    font-size:11px;
+.linea-corta{
+  max-width:45mm;
 }
 
-.texto-linea input{
-    border:0;
-    border-bottom:1px dotted #111;
-    border-radius:0;
-    flex:1;
+.espacio{
+  height:3mm;
 }
 
 /* =========================
-   DECLARACION
+   DECLARACIÓN
 ========================= */
 
-.declaracion{
-    border:1.8px solid #111;
-    display:grid;
-    grid-template-columns:55% 45%;
-    margin-top:3mm;
-}
-
-.declaracion-texto{
-    padding:5mm;
-    font-size:11px;
-    line-height:1.45;
-    border-right:1.8px solid #111;
-    text-align:justify;
-}
-
-.declaracion-firma{
-    padding:5mm;
-    font-size:11px;
-    line-height:2.2;
+.texto-declaracion{
+  line-height:1.35;
+  padding:3mm 4mm;
 }
 
 /* =========================
    FIRMA
 ========================= */
 
-.linea-firma{
-    margin-top:18mm;
-    border-bottom:1px solid #111;
-    width:100%;
+.firma-box{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+
+  border:2px solid #111;
+
+  margin-top:3mm;
+
+  min-height:34mm;
+}
+
+.firma-box>div{
+  padding:3mm;
+}
+
+.firma-box>div+div{
+  border-left:2px solid #111;
+}
+
+.centro{
+  text-align:center;
 }
 
 /* =========================
-   PAGINAS 3 Y 4
+   RUBRO 10
 ========================= */
 
-.titulo-pagina{
-    border:2px solid #111;
-    background:#dfe9f5;
-    color:#092d61;
-    padding:5px;
-    font-size:13px;
-    font-weight:bold;
+.bienes .rubro-contenido{
+  padding:2mm 5mm;
 }
 
-.rubro-grande{
-    border:1.8px solid #111;
-    margin-top:3mm;
+.bienes .fila{
+  min-height:15mm;
 }
 
-.rubro-grande .rubro-contenido{
-    min-height:55mm;
+.bienes .fila .linea{
+  height:7mm;
 }
 
 /* =========================
-   REQUISITOS
+   RUBRO 11
 ========================= */
 
-.requisitos-final{
-    border:2px solid #111;
-    margin-top:6mm;
-    padding:5mm;
-    font-family:"Times New Roman",serif;
-    font-size:13px;
-    line-height:1.3;
-}
-
-.requisitos-final h2{
-    font-size:15px;
-    text-decoration:underline;
-    margin:0 0 5px;
-}
-
-.requisitos-final ol{
-    margin-top:3px;
-    padding-left:22px;
-}
-
-.requisitos-final li{
-    margin-bottom:2px;
-}
-
-.requisitos-final .subtitulo{
-    font-weight:bold;
-    text-decoration:underline;
-    margin-top:7px;
+.empleados .fila{
+  min-height:12mm;
 }
 
 /* =========================
-   RESPONSIVE
+   RUBRO 12
 ========================= */
 
-@media(max-width:900px){
-
-    #formularioPDF,
-    .pagina{
-        width:100%;
-    }
-
-    .pagina{
-        min-height:auto;
-        margin:0;
-        padding:8mm;
-    }
-
-    .encabezado{
-        grid-template-columns:1fr;
-        height:auto;
-    }
-
-    .encabezado-izq{
-        border-right:0;
-        border-bottom:2px solid #111;
-    }
-
-    .rubros{
-        grid-template-columns:1fr;
-    }
+.horarios .fila{
+  min-height:12mm;
 }
 
 /* =========================
-   IMPRESION
+   RUBRO 13
+========================= */
+
+.declaracion-jurada{
+  margin-top:3mm;
+}
+
+/* =========================
+   NUMERO DE PAGINA
+========================= */
+
+.numero-pagina{
+  font-weight:bold;
+  font-size:12px;
+  color:#173964;
+  padding:2mm 1mm;
+}
+
+/* =========================
+   IMPRESIÓN
 ========================= */
 
 @media print{
 
-    @page{
-        size:A4 portrait;
-        margin:0;
-    }
+  @page{
+    size:A4 portrait;
+    margin:0;
+  }
 
-    html,body{
-        background:white;
-    }
+  html,body{
+    background:white;
+  }
 
-    .barra-acciones{
-        display:none !important;
-    }
+  .barra-acciones{
+    display:none !important;
+  }
 
-    #formularioPDF{
-        width:210mm;
-    }
+  .documento{
+    width:210mm;
+    margin:0;
+  }
 
-    .pagina{
-        width:210mm;
-        height:297mm;
-        min-height:297mm;
-        margin:0;
-        box-shadow:none;
-        page-break-after:always;
-        overflow:hidden;
-    }
+  .pagina{
+    margin:0;
 
-    .pagina:last-child{
-        page-break-after:auto;
-    }
+    border:2px solid #111;
 
-    input,
-    select,
-    textarea{
-        -webkit-print-color-adjust:exact;
-        print-color-adjust:exact;
-    }
+    page-break-after:always;
+    break-after:page;
+  }
+
+  .pagina:last-child{
+    page-break-after:auto;
+    break-after:auto;
+  }
+
+  input,
+  textarea{
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
 
 }
 
 </style>
 </head>
 
+
 <body>
 
-<!-- =====================================================
+<!-- =========================
      BOTONES
-===================================================== -->
+========================= -->
 
 <div class="barra-acciones">
 
-    <button class="boton boton-pdf"
-            type="button"
-            onclick="descargarPDF()">
-        ⬇ DESCARGAR PDF
-    </button>
+  <button
+    class="boton boton-pdf"
+    onclick="descargarPDF()">
+    Descargar PDF
+  </button>
 
-    <button class="boton boton-limpiar"
-            type="button"
-            onclick="limpiarFormulario()">
-        🔄 LIMPIAR CAMPOS
-    </button>
+  <button
+    class="boton boton-limpiar"
+    onclick="limpiarFormulario()">
+    Limpiar campos
+  </button>
 
 </div>
 
 
-<div id="formularioPDF">
+<div id="formularioPDF" class="documento">
 
 
 <!-- =====================================================
-     PAGINA 1
+     PÁGINA 1
 ===================================================== -->
 
 <section class="pagina">
 
-<div class="encabezado">
+  <div class="cabecera">
 
-    <div class="encabezado-izq">
+    <div class="cabecera-izq">
 
-        <!-- NO CAMBIAR EL LOGO -->
-        <!-- Si tu logo tiene otro nombre, cambia SOLO el nombre
-             del archivo dentro de src -->
+      <strong>
+        MUNICIPALIDAD DE ITUZAINGÓ
+      </strong>
 
-        <img
-            class="logo"
-            src="../assets/logo-arti.jpeg"
-            alt="Logo">
+      <div class="provincia">
+        Provincia de Corrientes
+      </div>
 
-        <div class="datos-municipales">
+      <div>
+        Formulario N° 010
+      </div>
 
-            <h1>MUNICIPALIDAD DE ITUZAINGÓ</h1>
+    </div>
 
-            <h2>Provincia de Corrientes</h2>
 
-            <h3>Formulario N° 010</h3>
+    <div class="cabecera-der">
+
+      <strong>
+        SOLICITUD DE INSCRIPCION EN EL
+        <br>
+        REGISTRO MUNICIPAL DE COMERCIOS E INDUSTRIAS
+      </strong>
+
+    </div>
+
+  </div>
+
+
+  <div class="expediente">
+
+    Expediente Municipal N°
+
+    <input class="linea linea-corta">
+
+    Fecha Ingreso
+
+    <input class="linea linea-corta">
+
+  </div>
+
+
+  <!-- RUBRO 1 -->
+
+  <div class="rubro">
+
+    <div class="rubro-titulo">
+      Rubro 1: Apellidos y nombres del titular del comercio y domicilio
+    </div>
+
+    <div class="rubro-contenido">
+
+      <div class="fila">
+        <span class="etiqueta">Apellido del Padre</span>
+        <input class="linea">
+
+        <span class="etiqueta">Apellido de la Madre</span>
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <span class="etiqueta">Apellido de Casada</span>
+        <input class="linea">
+
+        <span class="etiqueta">Nombre/s</span>
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <span class="etiqueta">Domicilio particular</span>
+        <input class="linea">
+
+        <span class="etiqueta">Telef/celular N°</span>
+        <input class="linea">
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- RUBRO 2 -->
+
+  <div class="rubro">
+
+    <div class="rubro-titulo">
+      Rubro 2: Sociedades previstas en la ley N° 19550 (completar si existe sociedad)
+    </div>
+
+    <div class="rubro-contenido">
+
+      <div class="fila">
+        <span class="etiqueta">Razón Social:</span>
+        <input class="linea">
+
+        <span class="etiqueta">Correo Electrónico</span>
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <span class="etiqueta">Domicilio Legal:</span>
+        <input class="linea">
+
+        <span class="etiqueta">C.U.I.T.:</span>
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <span class="etiqueta">Apoderado o Responsable</span>
+        <input class="linea">
+
+        <span class="etiqueta">D.N.I</span>
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <span class="etiqueta">Tipo Societario:</span>
+        <input class="linea">
+
+        <span class="etiqueta">Fecha del Cont. Social</span>
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <span class="etiqueta">Domicilio Particular</span>
+        <input class="linea">
+
+        <span class="etiqueta">Telef./celular:</span>
+        <input class="linea">
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- RUBRO 3 -->
+
+  <div class="rubro">
+
+    <div class="rubro-titulo">
+      Rubro 3: Datos Personales del titular (no sociedades)
+    </div>
+
+    <div class="rubro-contenido">
+
+      <div class="fila">
+        <span class="etiqueta">Fecha de Nacimiento:</span>
+        <input class="linea">
+
+        <span class="etiqueta">Fecha de Casamiento</span>
+        <input class="linea">
+
+        <span class="etiqueta">D.N.I.:</span>
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <span class="etiqueta">Estado Civil:</span>
+        <input class="linea">
+
+        <span class="etiqueta">Sexo:</span>
+        <input class="linea">
+
+        <span class="etiqueta">Nacionalidad:</span>
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <span class="etiqueta">Correo electrónico:</span>
+        <input class="linea">
+
+        <span class="etiqueta">Telef./Celular:</span>
+        <input class="linea">
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- RUBRO 4 -->
+
+  <div class="rubro">
+
+    <div class="rubro-titulo">
+      Rubro 4: Actividades a desarrollar
+    </div>
+
+    <div class="rubro-contenido">
+
+      <div class="fila">
+        <span class="etiqueta">Denominación del negocio:</span>
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <span class="etiqueta">Actividad Principal:</span>
+        <input class="linea">
+
+        <span class="etiqueta">Rubros anexos:</span>
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <span class="etiqueta">Telef/cel.:</span>
+        <input class="linea">
+
+        <span class="etiqueta">Correo electrónico:</span>
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <span class="etiqueta">Domicilio comercial:</span>
+        <input class="linea">
+
+        <span class="etiqueta">Entre Calles:</span>
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <span class="etiqueta">Fecha de inicio de actividades:</span>
+        <input class="linea">
+
+        <span class="etiqueta">Mes de cierre del ejercicio comercial</span>
+        <input class="linea">
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- RUBRO 5 -->
+
+  <div class="rubro">
+
+    <div class="rubro-titulo">
+      Rubro 5: Inscripciones
+    </div>
+
+    <div class="rubro-contenido">
+
+      <div class="fila">
+        <span class="etiqueta">Dirección Gral. Impositiva:</span>
+        <input class="linea">
+
+        <span class="etiqueta">Ganancias:</span>
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <span class="etiqueta">
+          Dirección General de Rentas: Ingresos brutos:
+        </span>
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <span class="etiqueta">
+          Dirección Nacional de Recaudaciones Previsional N°:
+        </span>
+        <input class="linea">
+
+        <span class="etiqueta">Caja:</span>
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <span class="etiqueta">
+          Adhesión al convenio multilateral:
+        </span>
+        <input class="linea">
+
+        <span class="etiqueta">Provincia:</span>
+        <input class="linea">
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PÁGINA 2
+===================================================== -->
+
+<section class="pagina">
+
+  <!-- RUBRO 6 -->
+
+  <div class="rubro">
+
+    <div class="rubro-titulo">
+      Rubro 6: Registro Catastral
+    </div>
+
+    <div class="rubro-contenido">
+
+      <div class="fila">
+        <span class="etiqueta">
+          INSTRUMENTO LEGAL QUE ACREDITE TAL SITUACION:
+        </span>
+
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+
+        <span class="etiqueta">
+          (Contrato-Autorización, etc.) Fecha desde
+        </span>
+
+        <input class="linea">
+
+        <span class="etiqueta">
+          Fecha de venc.:
+        </span>
+
+        <input class="linea">
+
+        <span class="etiqueta">
+          Plazo
+        </span>
+
+        <input class="linea linea-corta">
+
+        <span class="etiqueta">
+          años
+        </span>
+
+      </div>
+
+      <div class="fila">
+        <span class="etiqueta">
+          Inscripciones en catastro municipal:
+        </span>
+
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <span class="etiqueta">
+          Registro de la Propiedad Inmueble:
+        </span>
+
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <input class="linea">
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- RUBRO 7 -->
+
+  <div class="rubro">
+
+    <div class="rubro-titulo">
+      Rubro 7: Datos sobre habilitación municipal anterior
+    </div>
+
+    <div class="rubro-contenido">
+
+      <div class="fila">
+        <span class="etiqueta">
+          Expediente municipal N°:
+        </span>
+
+        <input class="linea">
+
+        <span class="etiqueta">
+          Fecha:
+        </span>
+
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <span class="etiqueta">
+          Inscripción N°:
+        </span>
+
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <span class="etiqueta">
+          Domicilio:
+        </span>
+
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <span class="etiqueta">
+          Actividad Principal:
+        </span>
+
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <span class="etiqueta">
+          Rubros Anexos:
+        </span>
+
+        <input class="linea">
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- RUBRO 8 -->
+
+  <div class="rubro">
+
+    <div class="rubro-titulo">
+      Rubro 8: Modificaciones Introducidas
+    </div>
+
+    <div class="rubro-contenido">
+
+      <div class="fila">
+        <span class="etiqueta">Titulares:</span>
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <span class="etiqueta">Domicilio comercial:</span>
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <span class="etiqueta">Altas y bajas socios:</span>
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <span class="etiqueta">Mejoras:</span>
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <input class="linea">
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- RUBRO 9 -->
+
+  <div class="rubro">
+
+    <div class="rubro-titulo">
+      Rubro 9: Observaciones
+    </div>
+
+    <div class="rubro-contenido">
+
+      <div class="fila">
+        <span class="etiqueta">
+          Indicar si se trata de sucursales:
+        </span>
+
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <input class="linea">
+      </div>
+
+      <div class="firma-box">
+
+        <div class="texto-declaracion">
+
+          Afirmo que todos los datos consignados en este
+          formulario, son correctos y completos, y que
+          he confeccionado esta declaración sin omitir ni
+          falsear dato alguno que deba contener, siendo
+          fiel expresión de verdad.
 
         </div>
 
+
+        <div>
+
+          <strong>Lugar y fecha:</strong>
+
+          <br><br>
+
+          Ituzaingó, Ctes........de
+          <input class="linea">
+          de
+          <input class="linea">
+
+          <br><br>
+
+          <strong>Firma del titular:</strong>
+
+          <div style="height:22mm"></div>
+
+        </div>
+
+      </div>
+
     </div>
 
-    <div class="encabezado-derecho">
+  </div>
 
-        SOLICITUD DE INSCRIPCIÓN EN EL<br>
+</section>
+
+
+
+<!-- =====================================================
+     PÁGINA 3 / 4
+===================================================== -->
+
+<section class="pagina bienes">
+
+  <div class="numero-pagina">
+    PÁGINA 3 / 4
+  </div>
+
+
+  <div class="cabecera">
+
+    <div class="cabecera-izq">
+
+      <strong>
+        MUNICIPALIDAD DE ITUZAINGÓ
+      </strong>
+
+      <div class="provincia">
+        Provincia de Corrientes
+      </div>
+
+      <div>
+        Formulario N° 010
+      </div>
+
+    </div>
+
+
+    <div class="cabecera-der">
+
+      <strong>
+        SOLICITUD DE INSCRIPCION EN EL
+        <br>
         REGISTRO MUNICIPAL DE COMERCIOS E INDUSTRIAS
+      </strong>
 
     </div>
 
-</div>
+  </div>
 
 
-<div class="expediente">
+  <div class="expediente">
 
-    <span>
-        Expediente Municipal N°
-        <input type="text">
-    </span>
+    Expediente Municipal N°
 
-    <span>
-        Fecha Ingreso
-        <input type="text">
-    </span>
+    <input class="linea linea-corta">
 
-</div>
+    Fecha Ingreso
 
+    <input class="linea linea-corta">
 
-<div class="rubros">
+  </div>
 
-<!-- COLUMNA IZQUIERDA -->
 
-<div class="columna">
+  <!-- RUBRO 10 -->
 
+  <div class="rubro">
 
-<div class="rubro">
+    <div class="rubro-titulo">
+      Rubro 10: Bienes afectados a la explotación comercial
+    </div>
 
-<div class="rubro-titulo">
-Rubro 1: Apellidos y nombres del titular del comercio y domicilio
-</div>
+    <div class="rubro-contenido">
 
-<div class="rubro-contenido">
+      <div class="centro" style="padding-bottom:2mm">
+        <strong>Conceptos</strong>
+      </div>
 
-<div class="fila">
-<span class="etiqueta">Apellido del Padre</span>
-<input class="campo">
-<span class="etiqueta">Apellido de la Madre</span>
-<input class="campo">
-</div>
 
-<div class="fila">
-<span class="etiqueta">Apellido de Casada</span>
-<input class="campo">
-<span class="etiqueta">Nombre/s</span>
-<input class="campo">
-</div>
+      <div class="fila">
+        <span class="etiqueta">
+          INMUEBLES (Detalles de mejoras):
+        </span>
+        <input class="linea">
+      </div>
 
-<div class="fila">
-<span class="etiqueta">Domicilio particular</span>
-<input class="campo">
-<span class="etiqueta">Telef/celular N°</span>
-<input class="campo">
-</div>
+      <div class="fila">
+        <input class="linea">
+      </div>
 
-</div>
-</div>
+      <div class="fila">
+        <input class="linea">
+      </div>
 
+      <div class="fila">
+        <input class="linea">
+      </div>
 
-<div class="rubro">
 
-<div class="rubro-titulo">
-Rubro 2: Sociedades previstas en la ley N° 19550
-(completar si existe sociedad)
-</div>
+      <div class="fila">
+        <span class="etiqueta">
+          Rodados (detalles):
+        </span>
+        <input class="linea">
+      </div>
 
-<div class="rubro-contenido">
+      <div class="fila">
+        <input class="linea">
+      </div>
 
-<div class="fila">
-<span>Razón Social:</span>
-<input class="campo">
-<span>Correo Electrónico</span>
-<input class="campo">
-</div>
+      <div class="fila">
+        <input class="linea">
+      </div>
 
-<div class="fila">
-<span>Domicilio Legal:</span>
-<input class="campo">
-<span>C.U.I.T.:</span>
-<input class="campo">
-</div>
+      <div class="fila">
+        <input class="linea">
+      </div>
 
-<div class="fila">
-<span>Apoderado o Responsable</span>
-<input class="campo">
-<span>D.N.I</span>
-<input class="campo">
-</div>
 
-<div class="fila">
-<span>Tipo Societario:</span>
-<input class="campo">
-<span>Fecha del Cont. Social</span>
-<input class="campo">
-</div>
+      <div class="fila">
+        <span class="etiqueta">
+          Máquinas y herramientas (detalles):
+        </span>
+        <input class="linea">
+      </div>
 
-<div class="fila">
-<span>Domicilio Particular</span>
-<input class="campo">
-<span>Telef./celular:</span>
-<input class="campo">
-</div>
+      <div class="fila">
+        <input class="linea">
+      </div>
 
-</div>
-</div>
+      <div class="fila">
+        <input class="linea">
+      </div>
 
+      <div class="fila">
+        <input class="linea">
+      </div>
 
-<div class="rubro">
 
-<div class="rubro-titulo">
-Rubro 3: Datos Personales del titular (no sociedades)
-</div>
-
-<div class="rubro-contenido">
-
-<div class="fila">
-<span>Fecha de Nacimiento:</span>
-<input class="campo">
-
-<span>Fecha de Casamiento</span>
-<input class="campo">
-</div>
-
-<div class="fila">
-<span>D.N.I.:</span>
-<input class="campo">
-
-<span>Estado Civil:</span>
-<select class="campo">
-<option></option>
-<option>Soltero/a</option>
-<option>Casado/a</option>
-<option>Divorciado/a</option>
-<option>Viudo/a</option>
-</select>
-</div>
+      <div class="fila">
+        <span class="etiqueta">
+          Instalaciones (detalles):
+        </span>
+        <input class="linea">
+      </div>
 
-<div class="fila">
-<span>Sexo:</span>
-<select class="campo">
-<option></option>
-<option>Femenino</option>
-<option>Masculino</option>
-</select>
-
-<span>Nacionalidad:</span>
-<input class="campo">
-</div>
-
-<div class="fila">
-<span>Correo electrónico:</span>
-<input class="campo">
-
-<span>Telef./Celular:</span>
-<input class="campo">
-</div>
-
-</div>
-</div>
-
-
-<div class="rubro">
-
-<div class="rubro-titulo">
-Rubro 4: Actividades a desarrollar
-</div>
+      <div class="fila">
+        <input class="linea">
+      </div>
 
-<div class="rubro-contenido">
+      <div class="fila">
+        <input class="linea">
+      </div>
 
-<div class="fila">
-<span>Denominación del negocio:</span>
-<input class="campo">
-</div>
+      <div class="fila">
+        <input class="linea">
+      </div>
 
-<div class="fila">
-<span>Actividad Principal:</span>
-<input class="campo">
 
-<span>Rubros anexos:</span>
-<input class="campo">
-</div>
+      <div class="fila">
+        <span class="etiqueta">
+          Muebles y útiles (detalles):
+        </span>
+        <input class="linea">
+      </div>
 
-<div class="fila">
-<span>Telef/cel:</span>
-<input class="campo">
+      <div class="fila">
+        <input class="linea">
+      </div>
 
-<span>Correo electrónico:</span>
-<input class="campo">
-</div>
+      <div class="fila">
+        <input class="linea">
+      </div>
 
-<div class="fila">
-<span>Domicilio comercial:</span>
-<input class="campo">
+      <div class="fila">
+        <input class="linea">
+      </div>
 
-<span>Entre Calles:</span>
-<input class="campo">
-</div>
 
-<div class="fila">
-<span>Fecha de inicio de actividades:</span>
-<input class="campo">
+      <div class="fila">
+        <span class="etiqueta">
+          Instrumental (detalles):
+        </span>
+        <input class="linea">
+      </div>
 
-<span>Mes de cierre del ejercicio comercial:</span>
-<select class="campo">
-<option>Seleccionar mes</option>
-<option>Enero</option>
-<option>Febrero</option>
-<option>Marzo</option>
-<option>Abril</option>
-<option>Mayo</option>
-<option>Junio</option>
-<option>Julio</option>
-<option>Agosto</option>
-<option>Septiembre</option>
-<option>Octubre</option>
-<option>Noviembre</option>
-<option>Diciembre</option>
-</select>
-</div>
+      <div class="fila">
+        <input class="linea">
+      </div>
 
-</div>
-</div>
+      <div class="fila">
+        <input class="linea">
+      </div>
 
+      <div class="fila">
+        <input class="linea">
+      </div>
 
-<div class="rubro">
 
-<div class="rubro-titulo">
-Rubro 5: Inscripciones
-</div>
+      <div class="fila">
+        <span class="etiqueta">
+          Otros:
+        </span>
+        <input class="linea">
+      </div>
 
-<div class="rubro-contenido">
+      <div class="fila">
+        <input class="linea">
+      </div>
 
-<div class="fila">
-<span>Dirección Gral. Impositiva:</span>
-<input class="campo">
+    </div>
 
-<span>Ganancias:</span>
-<input class="campo">
-</div>
+  </div>
 
-<div class="fila">
-<span>Dirección General de Rentas: Ingresos brutos:</span>
-<input class="campo">
-</div>
 
-<div class="fila">
-<span>Dirección Nacional de Recaudaciones Previsional N°:</span>
-<input class="campo">
+  <div class="firma-box">
 
-<span>Caja:</span>
-<input class="campo">
-</div>
+    <div class="texto-declaracion">
 
-<div class="fila">
-<span>Adhesión al convenio multilateral:</span>
-<input class="campo">
+      Afirmo que todos los datos consignados en este
+      formulario, son correctos y completos, y que
+      he confeccionado esta declaración sin omitir ni
+      falsear dato alguno que deba contener, siendo
+      fiel expresión de verdad.
 
-<span>Provincia:</span>
-<input class="campo">
-</div>
+    </div>
 
-</div>
-</div>
+    <div>
 
-</div>
+      <strong>Lugar y fecha:</strong>
 
+      <br><br>
 
-<!-- COLUMNA DERECHA -->
+      Ituzaingó, Ctes......... de
+      <input class="linea">
+      de
+      <input class="linea">
 
-<div class="columna">
+      <br><br>
 
+      <strong>Firma del titular:</strong>
 
-<div class="rubro">
+      <div style="height:16mm"></div>
 
-<div class="rubro-titulo">
-Rubro 6: Registro Catastral
-</div>
+    </div>
 
-<div class="rubro-contenido">
-
-<p style="font-size:10px;font-weight:bold;">
-INSTRUMENTO LEGAL QUE ACREDITE TAL SITUACION:
-</p>
-
-<p style="font-size:9px;">
-(Contrato-Autorización, etc.)
-</p>
-
-<div class="fila">
-<span>Fecha desde:</span>
-<input class="campo">
-
-<span>Fecha de venc.:</span>
-<input class="campo">
-
-<span>Plazo</span>
-<input style="width:12mm">
-
-<span>años</span>
-</div>
-
-<div class="fila">
-<span>Inscripciones en catastro municipal:</span>
-</div>
-
-<input style="width:100%">
-
-<div class="fila">
-<span>Registro de la Propiedad Inmueble:</span>
-</div>
-
-<input style="width:100%">
-
-</div>
-</div>
-
-
-<div class="rubro">
-
-<div class="rubro-titulo">
-Rubro 7: Datos sobre habilitación municipal anterior
-</div>
-
-<div class="rubro-contenido">
-
-<div class="fila">
-<span>Expediente municipal N°:</span>
-<input class="campo">
-
-<span>Fecha:</span>
-<input class="campo">
-</div>
-
-<div class="fila">
-<span>Inscripción N°:</span>
-<input class="campo">
-</div>
-
-<div class="fila">
-<span>Domicilio:</span>
-<input class="campo">
-</div>
-
-<div class="fila">
-<span>Actividad Principal:</span>
-<input class="campo">
-</div>
-
-<div class="fila">
-<span>Rubros Anexos:</span>
-<input class="campo">
-</div>
-
-</div>
-</div>
-
-
-<div class="rubro">
-
-<div class="rubro-titulo">
-Rubro 8: Modificaciones Introducidas
-</div>
-
-<div class="rubro-contenido">
-
-<div class="fila">
-<span>Titulares:</span>
-<input class="campo">
-</div>
-
-<div class="fila">
-<span>Domicilio comercial:</span>
-<input class="campo">
-</div>
-
-<div class="fila">
-<span>Altas y bajas socios:</span>
-<input class="campo">
-</div>
-
-<div class="fila">
-<span>Mejoras:</span>
-<textarea></textarea>
-</div>
-
-</div>
-</div>
-
-
-<div class="rubro">
-
-<div class="rubro-titulo">
-Rubro 9: Observaciones
-</div>
-
-<div class="rubro-contenido">
-
-<div class="texto-linea">
-Indicar si se trata de sucursales:
-<input>
-</div>
-
-<div class="linea"></div>
-<div class="linea"></div>
-<div class="linea"></div>
-
-</div>
-</div>
-
-
-<div class="declaracion">
-
-<div class="declaracion-texto">
-
-Afirmo que todos los datos consignados en este
-formulario, son correctos y completos, y que he
-confeccionado esta declaración sin omitir ni
-falsear dato alguno que deba contener, siendo
-fiel expresión de verdad.
-
-</div>
-
-<div class="declaracion-firma">
-
-Lugar y fecha:
-
-<br><br>
-
-Ituzaingó, Ctes........... de
-<input style="width:15mm">
-de
-<input style="width:15mm">
-
-<br><br>
-
-Firma del titular:
-
-<div class="linea-firma"></div>
-
-</div>
-
-</div>
-
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
 
+
 <!-- =====================================================
-     PAGINA 2
+     PÁGINA 4 / 4
 ===================================================== -->
 
 <section class="pagina">
 
-<div class="titulo-pagina">
-PÁGINA 2 / 4
-</div>
-
-<div class="rubro-grande">
-
-<div class="rubro-titulo">
-Rubro 10: Bienes afectados a la explotación comercial
-</div>
-
-<div class="rubro-contenido">
-
-<div style="text-align:center;font-weight:bold;margin-bottom:5px;">
-Conceptos
-</div>
-
-<div class="texto-linea">
-INMUEBLES (Detalles de mejoras):
-<input>
-</div>
-
-<div class="linea"></div>
-<div class="linea"></div>
-<div class="linea"></div>
-
-<br>
-
-<div class="texto-linea">
-Muebles y útiles (detalles):
-<input>
-</div>
-
-<div class="linea"></div>
-<div class="linea"></div>
-<div class="linea"></div>
-
-<br>
-
-<div class="texto-linea">
-Instrumental (detalles):
-<input>
-</div>
-
-<div class="linea"></div>
-<div class="linea"></div>
-<div class="linea"></div>
-
-<br>
-
-<div class="texto-linea">
-Otros:
-<input>
-</div>
-
-<div class="linea"></div>
-<div class="linea"></div>
-
-</div>
-
-</div>
+  <div class="numero-pagina">
+    PÁGINA 4 / 4
+  </div>
 
 
-<div class="declaracion">
+  <!-- RUBRO 11 -->
 
-<div class="declaracion-texto">
+  <div class="rubro empleados">
 
-Afirmo que todos los datos consignados en este
-formulario, son correctos y completos, y que he
-confeccionado esta declaración sin omitir ni
-falsear dato alguno que deba contener, siendo
-fiel expresión de verdad.
+    <div class="rubro-titulo">
+      Rubro 11: Empleados y Personal de la Actividad
+    </div>
 
-</div>
+    <div class="rubro-contenido">
 
-<div class="declaracion-firma">
+      <div class="fila">
 
-Lugar y fecha:
+        <span class="etiqueta">
+          Número total de Empleados:
+        </span>
 
-<br><br>
+        <input class="linea linea-corta">
 
-Ituzaingó, Ctes........... de
-<input style="width:15mm">
-de
-<input style="width:15mm">
+      </div>
 
-<br><br>
 
-Firma del titular:
+      <div class="fila">
 
-<div class="linea-firma"></div>
+        <span class="etiqueta">
+          Detalle de las tareas que cumplen:
+        </span>
 
-</div>
+        <input class="linea">
 
-</div>
+      </div>
+
+      <div class="fila">
+        <input class="linea">
+      </div>
+
+      <div class="fila">
+        <input class="linea">
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- RUBRO 12 -->
+
+  <div class="rubro horarios">
+
+    <div class="rubro-titulo">
+      Rubro 12: Horarios de Atención
+    </div>
+
+    <div class="rubro-contenido">
+
+      <div class="fila">
+
+        <span class="etiqueta">
+          Días hábiles:
+        </span>
+
+        <input class="linea">
+
+        <span class="etiqueta">
+          Horario:
+        </span>
+
+        <input class="linea">
+
+      </div>
+
+
+      <div class="fila">
+
+        <span class="etiqueta">
+          Días inhábiles:
+        </span>
+
+        <input class="linea">
+
+        <span class="etiqueta">
+          Horario:
+        </span>
+
+        <input class="linea">
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- RUBRO 13 -->
+
+  <div class="rubro declaracion-jurada">
+
+    <div class="rubro-titulo">
+      Rubro 13: Declaración Jurada
+    </div>
+
+    <div class="rubro-contenido">
+
+      <div style="line-height:1.6">
+
+        Declaro bajo juramento que:
+
+        <br><br>
+
+        • Los datos consignados en este formulario son correctos y completos.
+
+        <br>
+
+        • Me comprometo a comunicar cualquier modificación que se produzca.
+
+        <br>
+
+        • Conozco y acepto las disposiciones municipales vigentes.
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- FIRMA FINAL -->
+
+  <div class="firma-box">
+
+    <div class="texto-declaracion">
+
+      Afirmo que todos los datos consignados en este
+      formulario, son correctos y completos, y que
+      he confeccionado esta declaración sin omitir ni
+      falsear dato alguno que deba contener, siendo
+      fiel expresión de verdad.
+
+    </div>
+
+
+    <div>
+
+      <strong>Lugar y fecha:</strong>
+
+      <br><br>
+
+      Ituzaingó, Ctes......... de
+      <input class="linea">
+      de
+      <input class="linea">
+
+      <br><br>
+
+      <strong>Firma del titular:</strong>
+
+      <div style="height:16mm"></div>
+
+    </div>
+
+  </div>
 
 </section>
 
-
-<!-- =====================================================
-     PAGINA 3
-===================================================== -->
-
-<section class="pagina">
-
-<div class="titulo-pagina">
-PÁGINA 3 / 4
-</div>
-
-
-<div class="rubro-grande">
-
-<div class="rubro-titulo">
-Rubro 10: Bienes afectados a la explotación comercial
-</div>
-
-<div class="rubro-contenido">
-
-<div class="texto-linea">
-INMUEBLES (Detalles de mejoras):
-<input>
-</div>
-
-<div class="linea"></div>
-<div class="linea"></div>
-<div class="linea"></div>
-<div class="linea"></div>
-
-<br>
-
-<div class="texto-linea">
-Rodados (detalles):
-<input>
-</div>
-
-<div class="linea"></div>
-<div class="linea"></div>
-<div class="linea"></div>
-
-<br>
-
-<div class="texto-linea">
-Mobiliarios (detalles):
-<input>
-</div>
-
-<div class="linea"></div>
-<div class="linea"></div>
-<div class="linea"></div>
-
-<br>
-
-<div class="texto-linea">
-Otros bienes (detalles):
-<input>
-</div>
-
-<div class="linea"></div>
-<div class="linea"></div>
-<div class="linea"></div>
-
-</div>
-
-</div>
-
-
-<div class="declaracion">
-
-<div class="declaracion-texto">
-
-Afirmo que todos los datos consignados en este
-formulario, son correctos y completos, y que he
-confeccionado esta declaración sin omitir ni
-falsear dato alguno que deba contener, siendo
-fiel expresión de verdad.
-
-</div>
-
-<div class="declaracion-firma">
-
-Lugar y fecha:
-
-<br><br>
-
-Ituzaingó, Ctes........... de
-<input style="width:15mm">
-de
-<input style="width:15mm">
-
-<br><br>
-
-Firma del titular:
-
-<div class="linea-firma"></div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     PAGINA 4
-===================================================== -->
-
-<section class="pagina">
-
-<div class="titulo-pagina">
-PÁGINA 4 / 4
-</div>
-
-
-<div class="rubro">
-
-<div class="rubro-titulo">
-Rubro 11: Empleados y Personal de la Actividad
-</div>
-
-<div class="rubro-contenido">
-
-<div class="fila">
-<span>Número total de Empleados:</span>
-<input class="campo">
-</div>
-
-<div class="fila">
-<span>Detalle de las tareas que cumplen:</span>
-</div>
-
-<textarea style="min-height:25mm"></textarea>
-
-</div>
-
-</div>
-
-
-<div class="rubro">
-
-<div class="rubro-titulo">
-Rubro 12: Horarios de Atención
-</div>
-
-<div class="rubro-contenido">
-
-<div class="fila">
-<span>Días hábiles:</span>
-<input class="campo">
-
-<span>Horario:</span>
-<input class="campo">
-</div>
-
-<div class="fila">
-<span>Días inhábiles:</span>
-<input class="campo">
-
-<span>Horario:</span>
-<input class="campo">
-</div>
-
-</div>
-
-</div>
-
-
-<div class="rubro">
-
-<div class="rubro-titulo">
-Rubro 13: Declaración Jurada
-</div>
-
-<div class="rubro-contenido">
-
-<p style="font-size:11px;">
-Declaro bajo juramento que:
-</p>
-
-<ul style="font-size:10px;line-height:1.6;">
-
-<li>
-Los datos consignados en este formulario son correctos y completos.
-</li>
-
-<li>
-Me comprometo a comunicar cualquier modificación que se produzca.
-</li>
-
-<li>
-Conozco y acepto las disposiciones municipales vigentes.
-</li>
-
-</ul>
-
-</div>
-
-</div>
-
-
-<div class="declaracion">
-
-<div class="declaracion-texto">
-
-Afirmo que todos los datos consignados en este
-formulario, son correctos y completos, y que he
-confeccionado esta declaración sin omitir ni
-falsear dato alguno que deba contener, siendo
-fiel expresión de verdad.
-
-</div>
-
-<div class="declaracion-firma">
-
-Lugar y fecha:
-
-<br><br>
-
-Ituzaingó, Ctes........... de
-<input style="width:15mm">
-de
-<input style="width:15mm">
-
-<br><br>
-
-Firma del titular:
-
-<div class="linea-firma"></div>
-
-</div>
 
 </div>
 
 
 <!-- =====================================================
-     REQUISITOS QUE FALTABAN
+     JAVASCRIPT
 ===================================================== -->
-
-<div class="requisitos-final">
-
-<h2>
-REQUISITOS PARA HABILITACIÓN COMERCIAL
-(Ord. 19/81 y 28/08)
-</h2>
-
-<ol>
-
-<li>
-Nota dirigida al Intendente Municipal Sr. Emilio Nicolas,
-solicitando la Habilitación del Local Comercial, donde deberá
-figurar el nombre de comercio, rubro, dirección y propietario,
-DNI y CUIT.
-</li>
-
-<li>
-Fotocopia del Título, Contrato de Locación o Boleto de Compra Venta
-(autenticado por la Policía o Escribano Público).
-</li>
-
-<li>
-Constancia de Inscripción en Rentas de la Provincia de Corrientes y ARCA.
-</li>
-
-<li>
-Declaración Jurada del Comercio (se adjunta).
-</li>
-
-<li>
-Fotocopia del Plano Aprobado.
-</li>
-
-<li>
-Copia del Certificado de Libre Deuda: Inmobiliario y Tasas por Servicios.
-</li>
-
-<li>
-Certificado de Fumigación.
-</li>
-
-<li>
-Seguro de Responsabilidad Civil del Comercio.
-</li>
-
-<li>
-Fotocopia del DNI del Solicitante 1° y 2° Hoja autenticado
-por la Policía o Escribano Público.
-</li>
-
-<li>
-Certificado de Protección contra incendios emitido por la
-Unidad de Bombero y/o Defensa Civil.
-</li>
-
-<li>
-En caso de sociedad, copia del contrato social legalizado ante Escribano Público.
-</li>
-
-<li>
-Carátula (valor $ 800).
-</li>
-
-</ol>
-
-
-<div class="subtitulo">
-REQUISITOS PARA LIBRETA SANITARIA
-</div>
-
-<ol>
-
-<li>
-Una (1) foto 4 x 4 (color o Blanco y Negro).
-</li>
-
-<li>
-Fotocopia del D.N.I y Certificado Médico de Buena Salud y Grupo Sanguíneo.
-</li>
-
-</ol>
-
-<p>
-<strong>Obligatoriedad:</strong>
-“Será obligatoria la tenencia de Libreta Sanitaria”
-la que será otorgada por la Municipalidad, a toda persona
-que desarrolle alguna actividad en contacto con el público
-(Código Fiscal art. 157).
-</p>
-
-<p>
-<strong>COSTO:</strong>
-$ 4.800 (Cuatro Mil Ochocientos) por año,
-y $ 3.200 (Tres Mil Doscientos) por seis meses,
-de acuerdo al rubro a desarrollar.
-</p>
-
-</div>
-
-</section>
-
-</div>
-
 
 <script>
 
-/* =====================================================
-   DESCARGAR PDF
-===================================================== */
-
 function descargarPDF(){
 
-    const elemento = document.getElementById("formularioPDF");
+  const elemento =
+    document.getElementById("formularioPDF");
 
-    const opciones = {
+  const opciones = {
 
-        margin:0,
+    margin:0,
 
-        filename:
-        "Formulario-010-Solicitud-Inscripcion.pdf",
+    filename:
+      "DECLARACION-JURADA-FORMULARIO-010.pdf",
 
-        image:{
-            type:"jpeg",
-            quality:0.98
-        },
+    image:{
+      type:"jpeg",
+      quality:0.98
+    },
 
-        html2canvas:{
-            scale:2,
-            useCORS:true,
-            backgroundColor:"#ffffff"
-        },
+    html2canvas:{
+      scale:2,
+      useCORS:true,
+      backgroundColor:"#ffffff"
+    },
 
-        jsPDF:{
-            unit:"mm",
-            format:"a4",
-            orientation:"portrait"
-        },
+    jsPDF:{
+      unit:"mm",
+      format:"a4",
+      orientation:"portrait"
+    },
 
-        pagebreak:{
-            mode:["css","legacy"]
-        }
+    pagebreak:{
+      mode:["css","legacy"]
+    }
 
-    };
+  };
 
-    html2pdf()
-        .set(opciones)
-        .from(elemento)
-        .save();
+  html2pdf()
+    .set(opciones)
+    .from(elemento)
+    .save();
+
 }
 
 
-/* =====================================================
-   LIMPIAR CAMPOS
-===================================================== */
-
 function limpiarFormulario(){
 
-    if(confirm("¿Querés borrar todos los datos ingresados?")){
+  document
+    .querySelectorAll("input,textarea")
+    .forEach(function(campo){
 
-        document
-        .querySelectorAll("input, textarea")
-        .forEach(function(campo){
+      campo.value="";
 
-            campo.value="";
-
-        });
-
-        document
-        .querySelectorAll("select")
-        .forEach(function(campo){
-
-            campo.selectedIndex=0;
-
-        });
-
-    }
+    });
 
 }
 
