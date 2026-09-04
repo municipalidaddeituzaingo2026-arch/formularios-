@@ -290,72 +290,34 @@ body {
   line-height: 1.7;
 }
 
-/* ==============================
-   FIRMA DEL PROPIETARIO
-   ============================== */
+<div class="firma">
 
-.firma {
-  margin-top: 18mm;
-  margin-left: 4mm;
+  <div class="firma-linea"></div>
 
-  font-family: "Courier New", Courier, monospace;
-  font-size: 15px;
+  <strong>Firma del Propietario.</strong>
 
-  line-height: 1.7;
-}
+  <br>
 
-/* Línea para la firma */
+  <strong>Aclaración:</strong>
+  <input
+    type="text"
+    id="aclaracion">
 
-.firma-linea {
-  width: 70mm;
-  height: 15mm;
+  <br>
 
-  margin-left: 0;
-  margin-bottom: 2mm;
+  <strong>D.N.I N°:</strong>
+  <input
+    type="text"
+    id="dni">
 
-  border-bottom: 1px solid #111;
-}
+  <br>
 
-/* Campos de firma */
+  <strong>Teléfono:</strong>
+  <input
+    type="text"
+    id="telefono">
 
-.firma input {
-  height: 8mm;
-
-  margin-left: 2mm;
-
-  border: 1px solid #777;
-  border-radius: 2px;
-
-  padding: 1mm 2mm;
-
-  background: white;
-
-  font-family: "Courier New", Courier, monospace;
-  font-size: 15px;
-}
-
-/* Aclaración */
-
-#aclaracion {
-  width: 70mm;
-}
-
-/* DNI */
-
-#dni {
-  width: 50mm;
-}
-
-/* Teléfono */
-
-#telefono {
-  width: 50mm;
-}
-
-.firma strong {
-  font-family: "Courier New", Courier, monospace;
-}
-
+</div>
 /* ==============================
    IMPRESIÓN
    ============================== */
