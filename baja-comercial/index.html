@@ -256,12 +256,9 @@
 </section>
 
 <div class="acciones">
-  <button type="button" id="botonGuardar" onclick="guardarDatos()">💾 GUARDAR DATOS</button>
   <button type="button" id="botonPDF" onclick="generarPDF()">📄 DESCARGAR PDF</button>
   <button type="button" id="botonLimpiar" onclick="limpiarDatos()">🗑️ LIMPIAR</button>
 </div>
-<div id="mensaje"></div>
-<p class="ayuda">Si el PDF no se descarga automáticamente, el navegador mostrará una opción para guardarlo como PDF.</p>
 </main>
 
 <script>
@@ -308,13 +305,6 @@ async function generarPDF() {
   const ayuda = document.querySelector('.ayuda');
   const boton = document.getElementById('botonPDF');
 
-  guardarDatos();
-  boton.disabled = true;
-  boton.textContent = 'GENERANDO PDF...';
-  acciones.style.display = 'none';
-  mensaje.style.display = 'none';
-  ayuda.style.display = 'none';
-
   try {
     if (typeof html2canvas !== 'function' || !window.jspdf || !window.jspdf.jsPDF) {
       throw new Error('Las librerías PDF no están disponibles.');
@@ -348,12 +338,6 @@ async function generarPDF() {
 
     mensaje.style.display = 'block';
     mostrarMensaje('✓ PDF descargado correctamente');
-  } catch (error) {
-    console.error(error);
-    mensaje.style.display = 'block';
-    mostrarMensaje('No se pudo generar el PDF. Se abrirá la impresión para guardarlo como PDF.', true);
-    // Fallback: el navegador permite elegir "Guardar como PDF".
-    setTimeout(() => window.print(), 300);
   } finally {
     acciones.style.display = 'block';
     ayuda.style.display = 'block';
