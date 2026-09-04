@@ -370,13 +370,6 @@ button:hover{opacity:.88}
 
             <button 
                 type="button" 
-                class="btn-imprimir" 
-                onclick="imprimirDocumento()">
-                Imprimir
-            </button>
-
-            <button 
-                type="button" 
                 class="btn-limpiar" 
                 onclick="limpiarFormulario()">
                 Limpiar
@@ -653,28 +646,11 @@ button:hover{opacity:.88}
 
                 alert(
                     "No se pudo generar el PDF. " +
-                    "Intente nuevamente o utilice el botón Imprimir."
+                    "Intente nuevamente."
                 );
 
             });
     }
-
-
-    /* ==========================================
-       IMPRIMIR
-       ========================================== */
-
-    function imprimirDocumento() {
-
-        if (!validarDatos()) {
-            return;
-        }
-
-        actualizarDocumento();
-
-        window.print();
-    }
-
 
     /* ==========================================
        LIMPIAR FORMULARIO
