@@ -72,13 +72,14 @@ body {
   background: white;
   position: relative;
 
-  border: 1.2mm solid #263238;
+  /* MARCO CLARO */
+  border: 1.2mm solid #9bb7cf;
 
   box-shadow:
-    inset 0 0 0 1mm white,
-    inset 0 0 0 1.8mm #8a9aa3,
-    inset 0 0 0 2.5mm white,
-    0 3px 18px rgba(0,0,0,.18);
+    inset 0 0 0 1.5mm white,
+    inset 0 0 0 2.2mm #d9e7f2,
+    inset 0 0 0 3mm white,
+    0 3px 18px rgba(80,120,150,.18);
 }
 
 /* Marco interior */
@@ -87,7 +88,7 @@ body {
   content: "";
   position: absolute;
   inset: 5mm;
-  border: 0.45mm solid #8a9aa3;
+  border: 0.45mm solid #b8ccdc;
   pointer-events: none;
 }
 
@@ -107,7 +108,7 @@ body {
   align-items: center;
   justify-content: center;
 
-  color: #263238;
+  color: #9bb7cf;
   background: white;
 
   font-family: "Courier New", Courier, monospace;
@@ -115,11 +116,11 @@ body {
 
   box-shadow:
     196mm 0 0 -2.4mm white,
-    196mm 0 0 -1.9mm #263238,
+    196mm 0 0 -1.9mm #9bb7cf,
     0 286mm 0 -2.4mm white,
-    0 286mm 0 -1.9mm #263238,
+    0 286mm 0 -1.9mm #9bb7cf,
     196mm 286mm 0 -2.4mm white,
-    196mm 286mm 0 -1.9mm #263238;
+    196mm 286mm 0 -1.9mm #9bb7cf;
 
   pointer-events: none;
 }
@@ -290,34 +291,87 @@ body {
   line-height: 1.7;
 }
 
-<div class="firma">
+/* ==============================
+   FIRMA DEL PROPIETARIO
+   ============================== */
 
-  <div class="firma-linea"></div>
+.firma {
+  margin-top: 18mm;
+  margin-left: 4mm;
 
-  <strong>Firma del Propietario.</strong>
+  font-family: "Courier New", Courier, monospace;
+  font-size: 15px;
 
-  <br>
+  line-height: 1.7;
+}
 
-  <strong>Aclaración:</strong>
-  <input
-    type="text"
-    id="aclaracion">
+/* Línea para la firma */
 
-  <br>
+.firma-linea {
+  width: 70mm;
+  height: 15mm;
 
-  <strong>D.N.I N°:</strong>
-  <input
-    type="text"
-    id="dni">
+  margin-left: 0;
+  margin-bottom: 2mm;
 
-  <br>
+  border-bottom: 1px solid #111;
+}
 
-  <strong>Teléfono:</strong>
-  <input
-    type="text"
-    id="telefono">
+/* ==============================
+   CAMPOS DE FIRMA
+   SOLO LÍNEA - SIN CUADRO
+   ============================== */
 
-</div>
+.firma input {
+  height: 7mm;
+
+  margin-left: 2mm;
+
+  border: 0;
+  border-bottom: 1px solid #111;
+
+  border-radius: 0;
+
+  padding: 1mm 2mm 0 2mm;
+
+  background: transparent;
+
+  outline: none;
+
+  font-family: "Courier New", Courier, monospace;
+  font-size: 15px;
+}
+
+/* Aclaración */
+
+#aclaracion {
+  width: 70mm;
+}
+
+/* DNI */
+
+#dni {
+  width: 50mm;
+}
+
+/* Teléfono */
+
+#telefono {
+  width: 50mm;
+}
+
+/* Mantener misma letra */
+
+.firma strong {
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* Línea más marcada cuando se escribe */
+
+.firma input:focus {
+  border-bottom: 2px solid #1d5d87;
+}
+
 /* ==============================
    IMPRESIÓN
    ============================== */
@@ -345,9 +399,9 @@ body {
     min-height: 297mm;
 
     box-shadow:
-      inset 0 0 0 1mm white,
-      inset 0 0 0 1.8mm #8a9aa3,
-      inset 0 0 0 2.5mm white;
+      inset 0 0 0 1.5mm white,
+      inset 0 0 0 2.2mm #d9e7f2,
+      inset 0 0 0 3mm white;
 
     page-break-after: avoid;
   }
@@ -357,6 +411,35 @@ body {
     print-color-adjust: exact;
 
     font-family: "Courier New", Courier, monospace;
+  }
+
+  /* Mantener las líneas de los campos */
+
+  .firma input {
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: 1px solid #111 !important;
+
+    background: transparent !important;
+  }
+
+  .campo {
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: 1px dotted #111 !important;
+
+    background: transparent !important;
+  }
+
+  .campo-fecha {
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: 1px dotted #111 !important;
+
+    background: transparent !important;
   }
 }
 
@@ -376,7 +459,7 @@ body {
 
     box-shadow:
       inset 0 0 0 3px white,
-      inset 0 0 0 5px #8a9aa3,
+      inset 0 0 0 5px #d9e7f2,
       inset 0 0 0 8px white;
   }
 
@@ -432,6 +515,10 @@ body {
 
   .firma {
     margin-left: 0;
+  }
+
+  .firma input {
+    max-width: calc(100% - 2mm);
   }
 }
 
@@ -542,7 +629,7 @@ body {
   </div>
 
 
-  <!-- DATOS -->
+  <!-- DATOS DEL VEHÍCULO -->
 
   <div class="datos">
 
@@ -667,9 +754,7 @@ body {
   </div>
 
 
-  <!-- ==============================
-       FIRMA DEL PROPIETARIO
-       ============================== -->
+  <!-- FIRMA DEL PROPIETARIO -->
 
   <div class="firma">
 
@@ -688,7 +773,7 @@ body {
     <input
       type="text"
       id="aclaracion"
-      placeholder="Escriba aquí">
+      autocomplete="off">
 
     <br>
 
@@ -699,7 +784,7 @@ body {
     <input
       type="text"
       id="dni"
-      placeholder="Escriba aquí">
+      autocomplete="off">
 
     <br>
 
@@ -710,7 +795,7 @@ body {
     <input
       type="text"
       id="telefono"
-      placeholder="Escriba aquí">
+      autocomplete="off">
 
   </div>
 
@@ -793,4 +878,5 @@ function limpiarFormulario() {
 </script>
 
 </body>
+</html>
 </html>
