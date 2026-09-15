@@ -3,12 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ARTI - Formularios</title>
+<title>Requisitos - Municipalidad de Ituzaingó</title>
 <style>
   :root{
     --azul-profundo:#173964;
     --azul-medio:#2c5c9e;
-    --azul-claro:#e8eff8;
     --papel:#fbfaf7;
     --tinta:#1c2733;
     --tinta-suave:#5b6b7d;
@@ -33,41 +32,15 @@
     position:relative;
   }
 
-  .sello{
-    width:76px;
-    height:76px;
-    margin:0 auto 22px;
-    border-radius:50%;
-    border:2px solid rgba(255,255,255,.55);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:relative;
-    overflow:hidden;
+  .volver{
+    display:inline-block;
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    font-size:12.5px;
+    color:rgba(255,255,255,.75);
+    text-decoration:none;
+    margin-bottom:22px;
   }
-
-  .sello::before{
-    content:"";
-    position:absolute;
-    inset:8px;
-    border:1px solid rgba(255,255,255,.35);
-    border-radius:50%;
-  }
-
-  .sello svg{
-    width:32px;
-    height:32px;
-    fill:none;
-    stroke:#fff;
-    stroke-width:1.4;
-  }
-
-  .sello img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    border-radius:50%;
-  }
+  .volver:hover{ color:#fff; text-decoration:underline; }
 
   .eyebrow{
     font-family:'Helvetica Neue', Arial, sans-serif;
@@ -94,16 +67,6 @@
     line-height:1.6;
   }
 
-  .volver{
-    display:inline-block;
-    font-family:'Helvetica Neue', Arial, sans-serif;
-    font-size:12.5px;
-    color:rgba(255,255,255,.75);
-    text-decoration:none;
-    margin-bottom:22px;
-  }
-  .volver:hover{ color:#fff; text-decoration:underline; }
-
   main{
     max-width:880px;
     margin:-48px auto 0;
@@ -116,7 +79,7 @@
     gap:18px;
   }
 
-  .formulario-item{
+  .requisito-item{
     background:#fff;
     border:1px solid var(--linea);
     border-radius:4px;
@@ -129,48 +92,49 @@
     transition:box-shadow .2s ease, transform .2s ease;
   }
 
-  .formulario-item:hover{
+  .requisito-item:hover{
     box-shadow:0 8px 24px rgba(23,57,100,.10);
     transform:translateY(-1px);
   }
 
-  .formulario-info{
+  .requisito-info{
     display:flex;
     align-items:flex-start;
     gap:16px;
   }
 
-  .numero{
+  .icono-pdf{
     font-family:'Helvetica Neue', Arial, sans-serif;
     font-size:11px;
-    letter-spacing:1px;
-    color:var(--oro);
-    border:1px solid var(--oro);
-    border-radius:50%;
-    width:30px;
-    height:30px;
-    min-width:30px;
+    font-weight:700;
+    letter-spacing:.5px;
+    color:#fff;
+    background:var(--oro);
+    border-radius:4px;
+    width:34px;
+    height:34px;
+    min-width:34px;
     display:flex;
     align-items:center;
     justify-content:center;
     margin-top:2px;
   }
 
-  .formulario-texto h2{
+  .requisito-texto h2{
     font-size:18px;
     font-weight:400;
     color:var(--azul-profundo);
     margin-bottom:4px;
   }
 
-  .formulario-texto p{
+  .requisito-texto p{
     font-family:'Helvetica Neue', Arial, sans-serif;
     font-size:13.5px;
     color:var(--tinta-suave);
     line-height:1.5;
   }
 
-  .abrir{
+  .ver{
     font-family:'Helvetica Neue', Arial, sans-serif;
     font-size:13px;
     font-weight:600;
@@ -184,36 +148,12 @@
     transition:background .2s ease, color .2s ease;
   }
 
-  .abrir:hover{
+  .ver:hover{
     background:var(--azul-medio);
     color:#fff;
   }
 
-  .requisitos-general{
-    display:flex;
-    justify-content:center;
-    margin-top:34px;
-  }
-
-  .ver-requisitos{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    font-family:'Helvetica Neue', Arial, sans-serif;
-    font-size:14px;
-    font-weight:600;
-    letter-spacing:.3px;
-    color:var(--azul-profundo);
-    text-decoration:none;
-    border-bottom:1px solid var(--oro);
-    padding-bottom:2px;
-  }
-
-  .ver-requisitos:hover{
-    color:var(--oro);
-  }
-
-  .abrir:focus-visible, .ver-requisitos:focus-visible, .formulario-item:focus-within{
+  .ver:focus-visible, .requisito-item:focus-within{
     outline:2px solid var(--oro);
     outline-offset:2px;
   }
@@ -235,15 +175,11 @@
 
   @media (max-width:560px){
     header{padding:48px 20px 72px}
-    .formulario-item{
+    .requisito-item{
       flex-direction:column;
       align-items:flex-start;
     }
-    .abrir{width:100%;text-align:center}
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    .formulario-item{transition:none}
+    .ver{width:100%;text-align:center}
   }
 </style>
 </head>
@@ -251,111 +187,36 @@
 
 <header>
   <a class="volver" href="../index.html">← Volver al portal</a>
-  <div class="sello" aria-hidden="true">
-    <img src="../assets/logo-arti.jpeg" alt="Logo ARTI">
-  </div>
   <div class="eyebrow">Municipalidad de Ituzaingó</div>
-  <h1>ARTI &ndash; Formularios</h1>
-  <p>Accedé, completá y descargá tus formularios en formato PDF de manera simple y directa.</p>
+  <h1>Requisitos por Trámite</h1>
+  <p>Consultá y descargá los requisitos oficiales en PDF de cada trámite municipal.</p>
 </header>
 
 <main>
   <div class="lista">
 
-    <div class="formulario-item">
-      <div class="formulario-info">
-        <span class="numero" aria-hidden="true">1</span>
-        <div class="formulario-texto">
-          <h2>Autorización</h2>
-          <p>Formulario de autorización municipal, listo para completar y exportar.</p>
+    <div class="requisito-item">
+      <div class="requisito-info">
+        <span class="icono-pdf" aria-hidden="true">PDF</span>
+        <div class="requisito-texto">
+          <h2>Folio N°10</h2>
+          <p>Solicitud de inscripción en el Registro Municipal de Comercios e Industrias.</p>
         </div>
       </div>
-      <a class="abrir" href="../autorizacion/">Abrir</a>
+      <a class="ver" href="declaracion_jurada_010">Ver requisitos</a>
     </div>
 
-    <div class="formulario-item">
-      <div class="formulario-info">
-        <span class="numero" aria-hidden="true">2</span>
-        <div class="formulario-texto">
-          <h2>Baja Comercial</h2>
-          <p>Solicitud de baja de actividad comercial ante el municipio.</p>
+    <div class="requisito-item">
+      <div class="requisito-info">
+        <span class="icono-pdf" aria-hidden="true">PDF</span>
+        <div class="requisito-texto">
+          <h2>Requisitos para Habilitación Comercial</h2>
+          <p>Documentación necesaria para habilitar un comercio (Ord. 19/81 y 28/08).</p>
         </div>
       </div>
-      <a class="abrir" href="../baja-comercial/">Abrir</a>
+      <a class="ver" href="requisito_habilitacion_comercial.html">Ver requisitos</a>
     </div>
 
-    <div class="formulario-item">
-      <div class="formulario-info">
-        <span class="numero" aria-hidden="true">3</span>
-        <div class="formulario-texto">
-          <h2>Constancia de No Inscripción Comercial</h2>
-          <p>Certificado oficial con marco ornamental, listo para firmar.</p>
-        </div>
-      </div>
-      <a class="abrir" href="../constancia/">Abrir</a>
-    </div>
-
-    <div class="formulario-item">
-      <div class="formulario-info">
-        <span class="numero" aria-hidden="true">4</span>
-        <div class="formulario-texto">
-          <h2>Constancia de No Inscripción Comercial (versión 2)</h2>
-          <p>Versión alternativa del certificado de constancia de no inscripción.</p>
-        </div>
-      </div>
-      <a class="abrir" href="../constancia-v2/">Abrir</a>
-    </div>
-
-    <div class="formulario-item">
-      <div class="formulario-info">
-        <span class="numero" aria-hidden="true">5</span>
-        <div class="formulario-texto">
-          <h2>Habilitación de Vehículos</h2>
-          <p>Formulario de habilitación de vehículos para fines comerciales.</p>
-        </div>
-      </div>
-      <a class="abrir" href="../habilitacion-vehiculos/">Abrir</a>
-    </div>
-
-    <div class="formulario-item">
-      <div class="formulario-info">
-        <span class="numero" aria-hidden="true">6</span>
-        <div class="formulario-texto">
-          <h2>Memo</h2>
-          <p>Formulario de memorándum interno.</p>
-        </div>
-      </div>
-      <a class="abrir" href="../memo/">Abrir</a>
-    </div>
-
-    <div class="formulario-item">
-      <div class="formulario-info">
-        <span class="numero" aria-hidden="true">7</span>
-        <div class="formulario-texto">
-          <h2>Habilitación Comercial</h2>
-          <p>Nota de solicitud de habilitación comercial.</p>
-        </div>
-      </div>
-      <a class="abrir" href="../habilitacion-comercial/">Abrir</a>
-    </div>
-
-    <div class="formulario-item">
-      <div class="formulario-info">
-        <span class="numero" aria-hidden="true">8</span>
-        <div class="formulario-texto">
-          <h2>Habilitación Condicional</h2>
-          <p>Habilitación comercial condicional, con vigencia definida.</p>
-        </div>
-      </div>
-      <a class="abrir" href="../habilitacion-condicional/">Abrir</a>
-    </div>
-
-  </div>
-
-  <div class="requisitos-general">
-    <a class="ver-requisitos" href="../requisitos/index.html">📄 ARTI &ndash; Requisitos</a>
-  </div>
-</main>
 
 <footer>
   <div class="linea-pie"></div>
